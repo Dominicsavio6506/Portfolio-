@@ -1488,6 +1488,10 @@ code, pre {
   margin-bottom: var(--space-2);
 }
 
+.success-banner.error {
+  background-color: #DC3545 !important;
+}
+
 .contact-info-wrapper {
   display: flex;
   flex-direction: column;

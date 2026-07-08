@@ -925,24 +925,25 @@
         <div class="contact-form-wrapper" data-reveal>
           <div id="contact-success-banner" class="success-banner d-none" role="alert"></div>
           <form id="contact-form" novalidate>
+            <input type="hidden" name="access_key" value="fa5795a9-fe6c-419a-ad38-5971504ae077">
             <div class="form-group mb-3">
               <label for="contact-name">Name</label>
-              <input type="text" id="contact-name" class="form-control" placeholder="Your name" required>
+              <input type="text" id="contact-name" name="name" class="form-control" placeholder="Your name" required>
               <span class="error-feedback"></span>
             </div>
             <div class="form-group mb-3">
               <label for="contact-email">Email Address</label>
-              <input type="email" id="contact-email" class="form-control" placeholder="your@email.com" required>
+              <input type="email" id="contact-email" name="email" class="form-control" placeholder="your@email.com" required>
               <span class="error-feedback"></span>
             </div>
             <div class="form-group mb-3">
               <label for="contact-subject">Subject</label>
-              <input type="text" id="contact-subject" class="form-control" placeholder="What is this about?" required>
+              <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="What is this about?" required>
               <span class="error-feedback"></span>
             </div>
             <div class="form-group mb-4">
               <label for="contact-message">Message</label>
-              <textarea id="contact-message" class="form-control" rows="5" placeholder="Tell me about the opportunity..." required></textarea>
+              <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Tell me about the opportunity..." required></textarea>
               <span class="error-feedback"></span>
             </div>
             <button type="submit" class="btn btn-primary w-full">Send Message</button>

@@ -282,21 +282,55 @@ const initContactForm = () => {
 
     if (!valid) return;
 
-    // Show success
-    if (banner) {
-      banner.textContent = "Message received! I'll get back to you within 24 hours.";
-      banner.classList.remove('d-none');
-      banner.classList.add('d-block');
-    }
+    // Disable submit button and change text to indicate sending
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-    form.reset();
+    // Submit data using Fetch
+    const formData = new FormData(form);
 
-    setTimeout(() => {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+
       if (banner) {
-        banner.classList.add('d-none');
-        banner.classList.remove('d-block');
+        if (data.success) {
+          banner.textContent = "Message received! I'll get back to you within 24 hours.";
+          banner.className = 'success-banner d-block'; // success styled
+          form.reset();
+        } else {
+          banner.textContent = data.message || "Failed to send message. Please email me directly at 7dsavio@gmail.com.";
+          banner.className = 'success-banner error d-block'; // error styled
+        }
+        banner.classList.remove('d-none');
       }
-    }, 6000);
+    })
+    .catch(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+
+      if (banner) {
+        banner.textContent = "Something went wrong. Please try again or email me directly at 7dsavio@gmail.com.";
+        banner.className = 'success-banner error d-block';
+        banner.classList.remove('d-none');
+      }
+    })
+    .finally(() => {
+      setTimeout(() => {
+        if (banner) {
+          banner.classList.add('d-none');
+          banner.classList.remove('d-block');
+          banner.classList.remove('error');
+        }
+      }, 6000);
+    });
   });
 };
 
