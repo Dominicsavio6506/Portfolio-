@@ -1,0 +1,5 @@
+# robots.txt for dominicsavio.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://dominicsavio6506.github.io/sitemap.xml
